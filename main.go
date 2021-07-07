@@ -3,7 +3,7 @@ package main
 import (
   "fmt"
   "os"
-  "net/http" // TODO: use "github.com/hashicorp/[redacted]" instead?
+  "net/http" // TODO: switch to "github.com/hashicorp/go-retryablehttp"
   "io/ioutil"
   "log"
   "time"
@@ -16,7 +16,6 @@ var out *os.File
 var baseUrl = "http://developer.itsmarta.com/RealtimeTrain/RestServiceNextTrain/GetRealtimeArrivals?apikey=%s"
 var reqUrl = fmt.Sprintf(baseUrl, os.Getenv("API_KEY"))
 var httpClient = &http.Client{}
-// var betterHttpClient = [redacted]
 
 var timeStrLayout = "2006-01-02 15:04:05.999999999 -0700 MST"
 var lastWriteKey = "lastWrite"
@@ -27,14 +26,15 @@ type Stop struct {
 }
 
 func main() {
+  fmt.Println("MARTA is smarta") // TODO: remove
+
   var err error
   out, err = os.OpenFile("out.json", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
   checkError(err)
   defer out.Close()
 
-  // betterHttpClient.Logger = [redacted] #security
-
-  lastWriteFinished := make(chan bool) // this will serve as our mutex
+  // lastWriteFinished will serve as our mutex; see https://gobyexample.com/channel-synchronization
+  lastWriteFinished := make(chan bool)
   for {
     lastWrite, err := getLastWriteTime()
     if (err != nil) {
@@ -87,7 +87,8 @@ func fetchStops() []Stop {
 }
 
 func filterStops(stops []Stop) []Stop {
-  return stops // TODO: filter to only stops w/ waiting_seconds < 120
+  // TODO: filter to only stops w/ waiting_seconds < 120
+  return stops
 }
 
 func checkError(err error) {
