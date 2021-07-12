@@ -6,7 +6,7 @@ For those who are not familiar, MARTA stands for Metropolitan Atlanta Rapid Tran
 
 In this project, you'll be filtering data from the [MARTA Rail Realtime RESTful API](https://www.itsmarta.com/app-developer-resources.aspx).
 
-The intent is to poll the API periodically, filter the results, and write the filtered data to a file (`out.json`). See the "Goals" section below for details.
+The intent is to poll the API periodically, filter the results, and write the filtered data to a file (`out.log`). See the "Goals" section below for details.
 
 The provided code is in [go](https://golang.org/) but feel free to start a new project from scratch if you'd prefer to use another language. Along the same lines, feel free to import additional packages / libraries as needed.
 
@@ -24,7 +24,8 @@ You are tasked with updating (or rewriting in another language) as if for a real
 ## Goals
 - Filter the original API response to only the "TRAIN_ID", "STATION", and "WAITING_SECONDS" key-value pairs. (Case-sensitivity of the resulting key/val strings is NOT important, however.)
 - Implement the `filterStops` method to further filter to only items where `WAITING_SECONDS` is less than `120`.
-- Importantly, to minimize disk space, this service should NOT write to `out.json` any MORE frequently than once every `10` seconds. Writing LESS-frequently, on the other hand, is acceptable, if needed, to improve resiliency.
+- Importantly, to minimize disk space, this service should NOT write to `out.log` any MORE frequently than once every `10` seconds. Writing LESS-frequently, on the other hand, is acceptable, if needed, to improve resiliency.
 - Audit for pre-existing bugs / easy-to-fix inefficiencies!
 - Consider resiliency, idempotency, security, and error-handling.
 - Handling interrupts / signals is outside the scope of this exercise, BUT -- you can assume that if the process dies, it will immediately be restarted!
+- Writing tests is outside the scope of this exercise as well.

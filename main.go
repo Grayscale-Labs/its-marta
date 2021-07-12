@@ -29,7 +29,7 @@ func main() {
   fmt.Println("MARTA is smarta") // TODO: remove
 
   var err error
-  out, err = os.OpenFile("out.json", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+  out, err = os.OpenFile("out.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
   checkError(err)
   defer out.Close()
 
