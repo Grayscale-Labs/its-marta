@@ -17,7 +17,7 @@ You should be able to run the project as-is without any issues connecting to the
 If, however, you encounter a permissions issue, feel free to [register for your own key](https://www.itsmarta.com/developer-reg-rtt.aspx) and [update the API_KEY Secret value](https://docs.replit.com/repls/secrets-environment-variables#secrets-environment-variables).
 
 ## Scenario
-You've taken over this project while the original author is on vacation. It has not been deployed or even reviewed by any other developer yet. (side note: Assume that any code comments were left by the original author!)
+You've taken over this project from a summer intern who has since returned to school. It has not been deployed or even reviewed by any other developer yet. (side note: Assume that any code comments were left by the original author!)
 
 You are tasked with updating (or rewriting in another language) as if for a real production service. (For example, assume any [stdout output will be archived](https://12factor.net/logs).)
 
